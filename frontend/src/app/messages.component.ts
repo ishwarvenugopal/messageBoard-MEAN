@@ -15,5 +15,5 @@ import { WebService } from './web.service';
     `
 })
 export class MessagesComponent{
-    constructor(private webService: WebService){}
+    constructor(public webService: WebService){}
 }
