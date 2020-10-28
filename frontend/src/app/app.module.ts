@@ -11,7 +11,7 @@ import { NewMessageComponent } from './new-message.component';
 import { FormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NavComponent } from './nav.component';
-
+import { HomeComponent } from './home-component';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { NavComponent } from './nav.component';
     MessagesComponent,
     NewMessageComponent,
     NavComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
