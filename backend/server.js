@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 })
 
 var messages = [{text: 'first message', owner: 'Tim'},{text: 'second message', owner:'Jane'}];
-var users = [];
+var users = [{firstName: 'a', email: 'a', password: 'a', id:0}];
 
 var api = express.Router();
 var auth = express.Router();
@@ -34,13 +34,32 @@ api.post('/messages',(req,res)=>{
     res.json(req.body);
 })
 
+auth.post('/login', (req,res)=>{
+    var user = users.find(user=> user.email == req.body.email);
+    
+    if(!user) 
+        sendAuthError(res);
+    if(user.password == req.body.password)
+        sendToken(user,res);
+    else
+        sendAuthError(res);
+})
+
 auth.post('/register', (req,res)=>{
     var index = users.push(req.body) - 1;
     user = users[index];
     user.id = index;
+    sendToken(user,res);
+})
+
+function sendToken(user, res){
     var token = jwt.sign(user.id, '123');
     res.json({firstName: user.firstName, token});
-})
+}
+
+function sendAuthError(res){
+    return res.json({success: false, message: 'email or password incorrect'});
+}
 
 app.use('/api',api);
 app.use('/auth',auth);
