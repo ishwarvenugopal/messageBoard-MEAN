@@ -8,10 +8,11 @@ import {MatCardModule} from '@angular/material/card';
 import { WebService } from './web.service';
 import { HttpClientModule } from '@angular/common/http'
 import { NewMessageComponent } from './new-message.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NavComponent } from './nav.component';
 import { HomeComponent } from './home-component';
+import { RegisterComponent } from './register.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HomeComponent } from './home-component';
     NewMessageComponent,
     NavComponent,
     HomeComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,7 @@ import { HomeComponent } from './home-component';
     HttpClientModule,
     FormsModule,
     MatSnackBarModule,
+    ReactiveFormsModule,
   ],
   providers: [ 
     WebService,
