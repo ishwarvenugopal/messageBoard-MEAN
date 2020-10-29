@@ -1,6 +1,7 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
+var jwt = require("jsonwebtoken");
 
 var app = express();
 app.use(bodyParser.json());
@@ -12,9 +13,10 @@ app.use((req, res, next) => {
 })
 
 var messages = [{text: 'first message', owner: 'Tim'},{text: 'second message', owner:'Jane'}];
-
+var users = [];
 
 var api = express.Router();
+var auth = express.Router();
 
 
 api.get('/messages',(req,res)=>{
@@ -32,6 +34,15 @@ api.post('/messages',(req,res)=>{
     res.json(req.body);
 })
 
+auth.post('/register', (req,res)=>{
+    var index = users.push(req.body) - 1;
+    user = users[index];
+    user.id = index;
+    var token = jwt.sign(user.id, '123');
+    res.json({firstName: user.firstName, token});
+})
+
 app.use('/api',api);
+app.use('/auth',auth);
 
 app.listen(3000);

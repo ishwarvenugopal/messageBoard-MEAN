@@ -13,6 +13,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NavComponent } from './nav.component';
 import { HomeComponent } from './home-component';
 import { RegisterComponent } from './register.component';
+import { AuthService } from './auth-service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RegisterComponent } from './register.component';
   ],
   providers: [ 
     WebService,
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })
